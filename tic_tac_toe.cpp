@@ -8,10 +8,10 @@ using namespace std;
 void print_board(char* group)
 {
 	cout << "\t\t| " << group[0] << " | " << group[1] << " | " << group[2] << " |\n";
-    cout << "\t\t|-----------|" << endl;
-    cout << "\t\t| " << group[3] << " | " << group[4] << " | " << group[5] << " |\n";
-    cout << "\t\t|-----------|" << endl;
-    cout << "\t\t| " << group[6] << " | " << group[7] << " | " << group[8] << " |\n";
+	cout << "\t\t|-----------|" << endl;
+	cout << "\t\t| " << group[3] << " | " << group[4] << " | " << group[5] << " |\n";
+	cout << "\t\t|-----------|" << endl;
+	cout << "\t\t| " << group[6] << " | " << group[7] << " | " << group[8] << " |\n";
 }
 
 
@@ -27,18 +27,18 @@ char* check_three(char kind, char* group)
 		if((group[x]==kind && group[y]==kind && group[z]==' ') || 
 			(group[x]==kind && group[y]==' ' && group[z]==kind) || 
 			(group[x]==' ' && group[y]==kind && group[z]==kind)){
-				if (group[x] == ' '){
-					situation[index] = '0' + x;		//convert int to char
-					index++;
-				}
-				else if (group[y] == ' '){
-					situation[index] = '0' + y;		//convert int to char
-					index++;
-				}
-				else if (group[z] == ' '){
-					situation[index] = '0' + z;		//convert int to char
-					index++;
-				}
+			if (group[x] == ' '){
+				situation[index] = '0' + x;		//convert int to char
+				index++;
+			}
+			else if (group[y] == ' '){
+				situation[index] = '0' + y;		//convert int to char
+				index++;
+			}
+			else if (group[z] == ' '){
+				situation[index] = '0' + z;		//convert int to char
+				index++;
+			}
 		}
 	}
 	return situation;
@@ -66,86 +66,86 @@ int pc_step(int step, char* group)
 		int position = rand() % 4;
 		return pro_step[position];
 	}
-    else if (step == 2){
-        if (group[4] == 'X'){
+	else if (step == 2){
+        	if (group[4] == 'X'){
 			int cor_step[4] = {0, 2, 6, 8};
-            for(int i = 0; i < 4; i++){
+            		for(int i = 0; i < 4; i++){
 				if (group[cor_step[i]] == 'O'){
-                    int posit = 0;
-                    if (cor_step[i] == 0)
-                        posit = 8;
-                    else if (cor_step[i] == 8)
-                        posit = 0;
-                    else if (cor_step[i] == 2)
-                        posit = 6;
-                    else if (cor_step[i] == 6)
-                        posit = 2;
-                    return posit;
+                    			int posit = 0;
+                    			if (cor_step[i] == 0)
+                        			posit = 8;
+                    			else if (cor_step[i] == 8)
+                        			posit = 0;
+                    			else if (cor_step[i] == 2)
+                        			posit = 6;
+                   			else if (cor_step[i] == 6)
+                        			posit = 2;
+                    			return posit;
 				}
 			}
 			int nearby[2] = {0, 0};
-            if (group[1] == 'O'){
-                nearby[0] = 0;
-                nearby[1] = 2;
+            		if (group[1] == 'O'){
+                		nearby[0] = 0;
+                		nearby[1] = 2;
 			}
-            else if (group[3] == 'O'){
-                nearby[0] = 0;
-                nearby[1] = 6;
+            		else if (group[3] == 'O'){
+                		nearby[0] = 0;
+                		nearby[1] = 6;
 			}
-            else if (group[5] == '0'){
-                nearby[0] = 2;
-                nearby[1] = 8;
+            		else if (group[5] == '0'){
+                		nearby[0] = 2;
+                		nearby[1] = 8;
 			}
-            else if (group[7] == '0'){
-                nearby[0] = 6;
-                nearby[1] = 8;
+            		else if (group[7] == '0'){
+                		nearby[0] = 6;
+                		nearby[1] = 8;
 			}
-            int posit = nearby[rand() % 2];
-            return posit;
+            		int posit = nearby[rand() % 2];
+            		return posit;
 		}
-        else{
-            if (group[4] == ' ')
-                return 4;
-            int posit = 0;
-            if (group[0] == 'X')
-                posit = 8;
-            else if (group[8] == 'X')
-                posit = 0;
-            else if (group[2] == 'X')
-                posit = 6;
-            else if (group[6] == 'X')
-                posit = 2;
-            return posit;
+        	else{
+            		if (group[4] == ' ')
+               	 		return 4;
+            		int posit = 0;
+            		if (group[0] == 'X')
+                		posit = 8;
+            		else if (group[8] == 'X')
+                		posit = 0;
+            		else if (group[2] == 'X')
+                		posit = 6;
+            		else if (group[6] == 'X')
+                		posit = 2;
+            		return posit;
 		}
 	}
-    else{
-        char* first_arr = check_three('X', group);
-        if (strlen(first_arr) != 0){
-            int posit = first_arr[0];
-            return posit;
+    	else{
+        	char* first_arr = check_three('X', group);
+        	if (strlen(first_arr) != 0){
+            		int posit = first_arr[0];
+            		return posit;
 		}
-        char* second_arr = check_three('O', group);
-        if (strlen(second_arr) != 0){
-            int posit = second_arr[0];
-            return posit;
+        	char* second_arr = check_three('O', group);
+        	if (strlen(second_arr) != 0){
+            		int posit = second_arr[0];
+            		return posit;
 		}
-        int third_posit = 0;
-        int third_max = -1;
-        for (int temp = 0; temp < 10; temp++){
-            if (group[temp] == ' '){
-                if (third_max == -1){
-                    third_posit = temp;
-                    third_max = 0;
+        	int third_posit = 0;
+        	int third_max = -1;
+        	for (int temp = 0; temp < 10; temp++){
+            		if (group[temp] == ' '){
+                		if (third_max == -1){
+                    			third_posit = temp;
+                    			third_max = 0;
 				}
-                char* temp_group = group;
-                char* temp_arr = check_three('X', temp_group);
-                if (strlen(temp_arr) > third_max){
-                    third_max = strlen(temp_arr);
-                    third_posit = temp;
+                		char* temp_group = group;
+                		char* temp_arr = check_three('X', temp_group);
+                		if (strlen(temp_arr) > third_max){
+                    			third_max = strlen(temp_arr);
+                    			third_posit = temp;
 				}
 			}
 		}
-        return third_posit;
+        	return third_posit;
 	}
 }
 
