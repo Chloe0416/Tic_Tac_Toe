@@ -4,9 +4,11 @@ import random
 
 def human_step():
     posit = input("Your turn. Enter a number: ")
+    #check vaild input
     while posit not in "123456789":
         posit = input("Please enter a valid cell number: ")
     posit = int(posit) - 1
+    #check 
     while group[posit] != " ":
         posit = input("Please enter a valid cell number: ")
         posit = int(posit) - 1
@@ -26,8 +28,6 @@ def pc_step():
                     posit = 0
                     if cor_step[i] == 0:
                         posit = 8
-                    elif cor_step[i] == 8:
-                        posit = 0
                     elif cor_step[i] == 2:
                         posit = 6
                     elif cor_step[i] == 6:
@@ -54,8 +54,6 @@ def pc_step():
             posit = 0
             if group[0] == "X":
                 posit = 8
-            elif group[8] == "X":
-                posit = 0
             elif group[2] == "X":
                 posit = 6
             elif group[6] == "X":
